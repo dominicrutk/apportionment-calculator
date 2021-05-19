@@ -43,7 +43,7 @@ fn main() {
     let mut states_list = queue.into_vec();
     states_list.sort_by(|first, second| first.get_name().cmp(second.get_name()));
 
-    println!("State|Population|Seats|People per Seat");
+    println!("State|Population|Seats|People Per Seat");
     for state in states_list {
         println!("{}|{}|{}|{}", state.get_name(), state.get_population(), state.get_seats(), state.get_people_per_seat());
     }
