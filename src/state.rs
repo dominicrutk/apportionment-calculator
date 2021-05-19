@@ -19,7 +19,7 @@ impl State {
     }
 
     pub fn add_seat(&mut self) {
-        self.seats = self.seats + 1;
+        self.seats += 1;
         self.priority = self.population as f64 / ((self.seats * (self.seats + 1)) as f64).sqrt();
     }
 
