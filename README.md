@@ -21,7 +21,7 @@ Of course, you could have Googled that information. You came here for customizat
 
 To adjust the state names, add/remove states, or adjust populations, create a new text file. In it, each row should contain
 the state name, a pipe character, and the state population without commas (e.g. `Alabama|5024279`). A full example of the
-2020 U.S. Census is available in a file named `2020us.txt` under the `data` directory.
+2020 U.S. Census is available in a file named `us2020.txt` under the `data` directory.
 
 Once you have a file with state names and populations, simply pass it as an argument to the `cargo run` command.
 

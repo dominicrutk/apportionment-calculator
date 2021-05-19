@@ -8,7 +8,7 @@ use std::collections::BinaryHeap;
 
 fn main() {
     // Defaults
-    let mut file_path = "./data/2020us.txt";
+    let mut file_path = "./data/us2020.txt";
     let mut seats_remaining = 435_u32;
 
     // User settings
