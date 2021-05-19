@@ -1,50 +1,50 @@
-Alabama|5024279
-Alaska|733391
-Arizona|7151502
-Arkansas|3011524
-California|39538223
-Colorado|5773714
-Connecticut|3605944
-Delaware|989948
-Florida|21538187
-Georgia|10711908
-Hawaii|1455271
-Idaho|1839106
-Illinois|12812508
-Indiana|6785528
-Iowa|3190369
-Kansas|2937880
-Kentucky|4505836
-Louisiana|4657757
-Maine|1362359
-Maryland|6177224
-Massachusetts|7029917
-Michigan|10077331
-Minnesota|5706494
-Mississippi|2961279
-Missouri|6154913
-Montana|1084225
-Nebraska|1961504
-Nevada|3104614
-New Hampshire|1377529
-New Jersey|9288994
-New Mexico|2117522
-New York|20201249
-North Carolina|10439388
-North Dakota|779094
-Ohio|11799448
-Oklahoma|3959353
-Oregon|4237256
-Pennsylvania|13002700
-Rhode Island|1097379
-South Carolina|5118425
-South Dakota|886667
-Tennessee|6910840
-Texas|29145505
-Utah|3271616
-Vermont|643077
-Virginia|8631393
-Washington|7705281
-West Virginia|1793716
-Wisconsin|5893718
-Wyoming|576851
+Alabama|5030053
+Alaska|736081
+Arizona|7158923
+Arkansas|3013756
+California|39576757
+Colorado|5782171
+Connecticut|3608298
+Delaware|990837
+Florida|21570527
+Georgia|10725274
+Hawaii|1460137
+Idaho|1841377
+Illinois|12822739
+Indiana|6790280
+Iowa|3192406
+Kansas|2940865
+Kentucky|4509342
+Louisiana|4661468
+Maine|1363582
+Maryland|6185278
+Massachusetts|7033469
+Michigan|10084442
+Minnesota|5709752
+Mississippi|2963914
+Missouri|6160281
+Montana|1085407
+Nebraska|1963333
+Nevada|3108462
+New Hampshire|1379089
+New Jersey|9294493
+New Mexico|2120220
+New York|20215751
+North Carolina|10453948
+North Dakota|779702
+Ohio|11808848
+Oklahoma|3963516
+Oregon|4241500
+Pennsylvania|13011844
+Rhode Island|1098163
+South Carolina|5124712
+South Dakota|887770
+Tennessee|6916897
+Texas|29183290
+Utah|3275252
+Vermont|643503
+Virginia|8654542
+Washington|7715946
+West Virginia|1795045
+Wisconsin|5897473
+Wyoming|577719
