@@ -19,26 +19,26 @@ cargo run
 
 Of course, you could have Googled that information. You came here for customization.
 
-To adjust the state names, add/remove states, or adjust populations, create a new text file. In it, each row should contain
-the state name, a pipe character, and the state population without commas (e.g. `Alabama|5024279`). A full example of the
-2020 U.S. Census is available in a file named `us2020.txt` under the `data` directory.
+To adjust the state names, add/remove states, or adjust populations, create a new tab-separated value (`tsv`) file. In it,
+each row should contain the state name, a tab character, and the state population without commas. A full example of the
+2020 U.S. Census is available in a file named `us2020.tsv` under the `data` directory.
 
 Once you have a file with state names and populations, simply pass it as an argument to the `cargo run` command.
 
 ```bash
-cargo run path_to_file.txt
+cargo run path_to_file.tsv
 ```
 
 If you want to adjust the total number of seats, pass another argument after the file name. Note that you must specify a
 file name as the first argument in order to specify the number of seats.
 
 ```bash
-cargo run path_to_file.txt 1000
+cargo run path_to_file.tsv 1000
 ```
 
-As always, you can pipe the output of the calculator to a file.
+As always, you can send the output of the calculator to a file.
 
 ```bash
-cargo run > output.txt
-cargo run path_to_file.txt 1000 > output.txt
+cargo run > output.tsv
+cargo run path_to_file.tsv 1000 > output.tsv
 ```

@@ -8,7 +8,7 @@ use std::collections::BinaryHeap;
 
 fn main() {
     // Defaults
-    let mut file_path = "./data/us2020.txt";
+    let mut file_path = "./data/us2020.tsv";
     let mut seats_remaining = 435_u32;
 
     // User settings
@@ -22,7 +22,7 @@ fn main() {
 
     let mut queue = BinaryHeap::new();
     for line in fs::read_to_string(file_path).expect("Something went wrong reading the file.").lines() {
-        let pair = line.split("|").collect::<Vec<&str>>();
+        let pair = line.split("\t").collect::<Vec<&str>>();
         let name: String = pair[0].parse().unwrap();
         let population = pair[1].parse().unwrap();
         queue.push(State::new(name, population));
@@ -43,8 +43,8 @@ fn main() {
     let mut states_list = queue.into_vec();
     states_list.sort_by(|first, second| first.get_name().cmp(second.get_name()));
 
-    println!("State|Population|Seats|People Per Seat");
+    println!("State\tPopulation\tSeats\tPeople Per Seat");
     for state in states_list {
-        println!("{}|{}|{}|{:.2}", state.get_name(), state.get_population(), state.get_seats(), state.get_people_per_seat());
+        println!("{}\t{}\t{}\t{:.2}", state.get_name(), state.get_population(), state.get_seats(), state.get_people_per_seat());
     }
 }
