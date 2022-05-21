@@ -2,7 +2,7 @@ mod state;
 
 use state::State;
 
-use std::env;
+use std::fmt::Write;
 use std::fs;
 use std::collections::BinaryHeap;
 
@@ -28,13 +28,12 @@ struct Args {
 fn main() {
     // Parse command line arguments
     let args = Args::parse();
-    println!("Input: {}\nOutput: {}\nSeats: {}", args.input, args.output.expect("No output specified"), args.seats);
-    let mut input_file_path = args.input;
+    let input_file_path = args.input;
     let mut seats_remaining = args.seats;
 
     // Initialize priority queue based on input file
     let mut queue = BinaryHeap::new();
-    for line in fs::read_to_string(input_file_path).expect("Something went wrong reading the file.").lines() {
+    for line in fs::read_to_string(input_file_path).expect("Something went wrong reading the input file.").lines() {
         let pair = line.split("\t").collect::<Vec<&str>>();
         let name: String = pair[0].parse().unwrap();
         let population = pair[1].parse().unwrap();
@@ -59,8 +58,17 @@ fn main() {
     let mut states_list = queue.into_vec();
     states_list.sort_by(|first, second| first.get_name().cmp(second.get_name()));
 
-    println!("State\tPopulation\tSeats\tPeople Per Seat");
+    // Generate the output string
+    let mut output = String::from("State\tPopulation\tSeats\tPeople Per Seat\n");
     for state in states_list {
-        println!("{}\t{}\t{}\t{:.2}", state.get_name(), state.get_population(), state.get_seats(), state.get_people_per_seat());
+        write!(&mut output, "{}\t{}\t{}\t{:.2}\n", state.get_name(), state.get_population(), state.get_seats(), state.get_people_per_seat())
+            .expect("Something went wrong generating the output.");
+    }
+
+    // Write to the output file, or if none is specified, print to the console
+    if let Some(output_file_path) = args.output {
+        fs::write(output_file_path, output).expect("Something went wrong writing to the output file.");
+    } else {
+        print!("{}", output);
     }
 }
