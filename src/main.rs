@@ -13,7 +13,7 @@ use clap::Parser;
 #[clap(author, version, about, long_about = None)]
 struct Args {
     /// Input file
-    #[clap(short, long, default_value = "./data/us2020.tsv")]
+    #[clap(short, long, default_value = "./data/us/us2020.tsv")]
     input: String,
 
     /// Output file [default: stdout]
