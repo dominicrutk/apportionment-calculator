@@ -25,20 +25,28 @@ each row should contain the state name, a tab character, and the state populatio
 Once you have a file with state names and populations, simply pass it as the `--input` (`-i`) argument to the `cargo run` command.
 
 ```bash
-cargo run -- --input path_to_file.tsv
+cargo run -- -i path_to_file.tsv
 ```
 
 If you want to adjust the total number of seats, pass the desired number as the `--seats` (`-s`) argument.
 
 ```bash
-cargo run -- --seats 1000
+cargo run -- -s 1000
+```
+
+Alternatively, use the `--cube-root-method` (`-c`) flag to calculate the number of seats using the
+[cube root method](https://en.wikipedia.org/wiki/Cube_root_rule). Note that this flag will be overridden by any number
+seats specified by the `--seats` argument.
+
+```bash
+cargo run -- -c
 ```
 
 By default, the tab-separated results will appear in the command line.
 If you want to specify an output file for the results, pass it as the `--output` (`-o`) argument.
 
 ```bash
-cargo run -- --output path_to_file.tsv
+cargo run -- -o path_to_file.tsv
 ```
 
 You can specify these arguments in any order, and each argument is optional.
