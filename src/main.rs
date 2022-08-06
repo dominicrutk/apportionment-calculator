@@ -24,8 +24,13 @@ struct Args {
     #[clap(short, long)]
     seats: Option<u32>,
 
-    /// Whether to use the cube root rule to determine the overall number of seats
-    #[clap(short)]
+    /// Multiplier to use with the cube root rule (e.g. specify 2 to get a total number of seats
+    /// equal to twice the cube root of the total population)
+    #[clap(short, value_name = "MULTIPLIER")]
+    cube_root_multiplier: Option<u32>,
+
+    /// Whether to use the cube root rule (with a multiplier of 1) to determine the total number of seats
+    #[clap(short = 'C')]
     cube_root_rule: bool,
 
     /// Number of seats to apportion to the smallest state using the Wyoming rule
@@ -65,6 +70,8 @@ fn main() {
         ((total_population as f64 / min_population as f64) * seats as f64).round() as u32
     } else if args.wyoming_rule {
         (total_population as f64 / min_population as f64).round() as u32
+    } else if let Some(multiplier) = args.cube_root_multiplier {
+        ((total_population as f64).powf(1f64 / 3f64) * multiplier as f64).round() as u32
     } else if args.cube_root_rule {
         (total_population as f64).powf(1f64 / 3f64).round() as u32
     } else {
@@ -94,7 +101,7 @@ fn main() {
     // Generate the output string
     let mut output = String::from("State\tPopulation\tSeats\tPeople Per Seat\n");
     for state in &states_list {
-        write!(&mut output, "{}\t{}\t{}\t{:.2}\n", state.get_name(), state.get_population(), state.get_seats(), state.get_people_per_seat())
+        write!(&mut output, "{}\t{}\t{}\t{:.4}\n", state.get_name(), state.get_population(), state.get_seats(), state.get_people_per_seat())
             .expect("Something went wrong generating the output.");
     }
 
