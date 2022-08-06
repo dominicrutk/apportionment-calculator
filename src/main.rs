@@ -62,7 +62,8 @@ fn main() {
 
     // Determine the number of seats
     // If a specific number if specified, use that number
-    // If not, use the cube root rule if specified
+    // If not, use the Wyoming rule (with the specified number of seats for Wyoming), if specified
+    // If not, use the cube root rule (with the specified multiplier), if specified
     // Otherwise, default to 435
     let seats = if let Some(seats) = args.seats {
         seats
