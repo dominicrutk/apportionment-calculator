@@ -3,13 +3,13 @@ use std::cmp::Ordering;
 #[derive(Debug, PartialEq)]
 pub struct State {
     name: String,
-    population: u32,
-    seats: u32,
+    population: u64,
+    seats: u64,
     priority: f64,
 }
 
 impl State {
-    pub fn new(name: String, population: u32) -> State {
+    pub fn new(name: String, population: u64) -> State {
         State {
             name,
             population,
@@ -27,11 +27,11 @@ impl State {
         &self.name
     }
 
-    pub fn get_population(&self) -> u32 {
+    pub fn get_population(&self) -> u64 {
         self.population
     }
 
-    pub fn get_seats(&self) -> u32 {
+    pub fn get_seats(&self) -> u64 {
         self.seats
     }
 
