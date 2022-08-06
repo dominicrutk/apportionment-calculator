@@ -34,12 +34,20 @@ If you want to adjust the total number of seats, pass the desired number as the 
 cargo run -- -s 1000
 ```
 
-Alternatively, use the `--cube-root-method` (`-c`) flag to calculate the number of seats using the
-[cube root method](https://en.wikipedia.org/wiki/Cube_root_rule). Note that this flag will be overridden by any number
-seats specified by the `--seats` argument.
+Alternatively, use the `-c` flag to calculate the number of seats using the
+[cube root rule](https://en.wikipedia.org/wiki/Cube_root_rule).
 
 ```bash
 cargo run -- -c
+```
+
+The Wyoming rule is also an option. Use the `-W` flag to calculate the number of seats using the
+[Wyoming rule](https://en.wikipedia.org/wiki/Wyoming_Rule) where the smallest state gets 1 seat. For even more
+customization, pass the desired number of seats for the smallest state as the `-w` argument.
+
+```bash
+cargo run -- -W # Equivalent to cargo run -- -w 1
+cargo run -- -w 10
 ```
 
 By default, the tab-separated results will appear in the command line.

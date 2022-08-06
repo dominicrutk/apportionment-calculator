@@ -3,7 +3,7 @@ mod state;
 use state::State;
 
 use std::fmt::Write;
-use std::fs;
+use std::{cmp, fs};
 use std::collections::BinaryHeap;
 
 use clap::Parser;
@@ -16,17 +16,25 @@ struct Args {
     #[clap(short, long, default_value = "./data/us2020.tsv")]
     input: String,
 
-    /// Output file
+    /// Output file [default: stdout]
     #[clap(short, long)]
     output: Option<String>,
 
-    /// Number of seats to apportion (will override the cube root method) [default: 435]
+    /// Number of seats to apportion [default: 435]
     #[clap(short, long)]
     seats: Option<u32>,
 
-    /// Whether to use the cube root method to determine the overall number of seats
-    #[clap(short, long)]
-    cube_root_method: bool,
+    /// Whether to use the cube root rule to determine the overall number of seats
+    #[clap(short)]
+    cube_root_rule: bool,
+
+    /// Number of seats to apportion to the smallest state using the Wyoming rule
+    #[clap(short, value_name = "SEATS")]
+    wyoming_seats: Option<u32>,
+
+    /// Whether to use the Wyoming rule with 1 seat for the smallest state
+    #[clap(short = 'W')]
+    wyoming_rule: bool,
 }
 
 fn main() {
@@ -37,21 +45,27 @@ fn main() {
     // Initialize priority queue based on input file and find total population
     let mut queue = BinaryHeap::new();
     let mut total_population = 0u32;
+    let mut min_population = u32::MAX;
     for line in fs::read_to_string(input_file_path).expect("Something went wrong reading the input file.").lines() {
         let pair = line.split("\t").collect::<Vec<&str>>();
         let name: String = pair[0].parse().unwrap();
         let population = pair[1].parse().unwrap();
         queue.push(State::new(name, population));
         total_population += population;
+        min_population = cmp::min(population, min_population);
     }
 
     // Determine the number of seats
     // If a specific number if specified, use that number
-    // If not, use the cube root method if specified
+    // If not, use the cube root rule if specified
     // Otherwise, default to 435
     let seats = if let Some(seats) = args.seats {
         seats
-    } else if args.cube_root_method {
+    } else if let Some(seats) = args.wyoming_seats {
+        ((total_population as f64 / min_population as f64) * seats as f64).round() as u32
+    } else if args.wyoming_rule {
+        (total_population as f64 / min_population as f64).round() as u32
+    } else if args.cube_root_rule {
         (total_population as f64).powf(1f64 / 3f64).round() as u32
     } else {
         435
